@@ -1,13 +1,28 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+set :application, "bot_test"
+set :repository,  "git@github.com:gtridev/bot_test.git"
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
+set :scm, :git
+# You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+role :web, "192.168.2.23"                          # Your HTTP server, Apache/etc
+role :app, "192.168.2.23"                          # This may be the same as your `Web` server
+#role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
+#role :db,  "your slave db-server here"
+
+#set :default_stage, "devtest"
+set :user, "deploy"
+set :use_sudo, false
+
+set :rvm_ruby_string, 'ruby-2.0.0-p195'
+set :rvm_type, :system
+
+ssh_options[:forward_agent] = true
+ssh_options[:port] = 2020
+
+set :deploy_via, :remote_cache
+set :deploy_to, "/home/deploy/bot_test"
+
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
